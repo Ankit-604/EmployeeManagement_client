@@ -1,0 +1,107 @@
+.wrapper {
+  min-height: 100vh;
+  background: #f0f2f5;
+  padding: 20px;
+}
+
+.dashboardContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header h1 {
+  color: #1a73e8;
+  font-size: clamp(24px, 4vw, 32px);
+  margin: 0;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 15px;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tableContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.tableContainer th,
+.tableContainer td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.tableContainer th {
+  background: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+}
+
+.tableContainer tr:hover {
+  background: #f8f9fa;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.deleteBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #f44336;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.deleteBtn:hover {
+  background: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 10px;
+  }
+
+  .dashboardContainer {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .headerButtons {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
