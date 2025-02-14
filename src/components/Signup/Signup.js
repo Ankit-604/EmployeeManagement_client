@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
+const API_BASE_URL = "https://employeemanagement-server-p9xc.onrender.com";
+
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -14,11 +16,12 @@ const Signup = () => {
     try {
       console.log("Attempting to signup with:", { username, email, password });
 
-      const response = await axios.post("http://localhost:2112/auth/signup", {
+      const response = await axios.post(`${API_BASE_URL}/auth/signup`, {
         username,
         email,
         password,
       });
+      console.log(API_BASE_URL);
 
       console.log("Signup response:", response.data);
 
@@ -27,7 +30,7 @@ const Signup = () => {
         navigate("/login");
       }
     } catch (error) {
-      console.log("Server URL:", "http://localhost:2112/auth/register");
+      console.log("Server URL:", `${API_BASE_URL}/auth/signup`);
       console.log("Request data:", { username, email, password });
       console.log("Full error:", error);
       console.log("Response details:", error.response?.data);

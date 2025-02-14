@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
+//import { API_BASE_URL } from "../../config";
+
+const API_BASE_URL = "https://employeemanagement-server-p9xc.onrender.com";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,15 +13,26 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:2112/auth/login", {
-        username,
-        password,
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
       });
-      localStorage.setItem("token", response.data.token);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Login failed");
+      }
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
       navigate("/dashboard");
     } catch (error) {
-      console.error("Login failed:", error);
-      alert("Login failed. Please check your credentials.");
+      console.error("Login error:", error);
+      // Show user-friendly error message
+      alert(error.message || "Failed to connect to server. Please try again.");
     }
   };
 

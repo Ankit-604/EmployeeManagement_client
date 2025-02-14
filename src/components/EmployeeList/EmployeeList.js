@@ -1,7 +1,7 @@
-// src/components/Employee/EmployeeList.js
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API_BASE_URL = "https://employeemanagement-server-p9xc.onrender.com";
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const EmployeeList = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await fetch("http://localhost:2112/emp/getEmployee");
+        const response = await fetch(`${API_BASE_URL}/emp/getEmployee`);
         const data = await response.json();
         if (response.ok) {
           setEmployees(data);
@@ -30,7 +30,7 @@ const EmployeeList = () => {
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:2112/emp/deleteEmployee", {
+      const response = await fetch(`${API_BASE_URL}/emp/deleteEmployee`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

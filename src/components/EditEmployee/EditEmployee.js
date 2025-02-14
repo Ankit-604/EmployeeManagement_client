@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
+const API_BASE_URL = "https://employeemanagement-server-p9xc.onrender.com";
+
 const EditEmployee = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,14 +20,11 @@ const EditEmployee = () => {
     const fetchEmployee = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await fetch(
-          `http://localhost:2112/emp/getEmployee/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch(`${API_BASE_URL}/emp/getEmployee/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const data = await response.json();
         if (response.ok) {
           setEmployeeData(data);
@@ -55,22 +54,19 @@ const EditEmployee = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(
-        `http://localhost:2112/emp/updateEmployee/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            name: employeeData.name,
-            email: employeeData.email,
-            age: Number(employeeData.age),
-            salary: Number(employeeData.salary),
-          }),
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/emp/updateEmployee/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: employeeData.name,
+          email: employeeData.email,
+          age: Number(employeeData.age),
+          salary: Number(employeeData.salary),
+        }),
+      });
 
       const data = await response.json();
 

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+const API_BASE_URL = "https://employeemanagement-server-p9xc.onrender.com";
+
 const AddEmployee = () => {
   const navigate = useNavigate();
   const [employeeData, setEmployeeData] = useState({
@@ -50,7 +52,7 @@ const AddEmployee = () => {
         throw new Error("Salary must be greater than 0");
       }
 
-      const response = await fetch("http://localhost:2112/emp/addEmployee", {
+      const response = await fetch(`${API_BASE_URL}/emp/addEmployee`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

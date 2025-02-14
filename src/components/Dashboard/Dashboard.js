@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import EditButton from "../EditButton/EditButton";
 import styles from "./Dashboard.module.css";
 import styled from "styled-components";
-import { API_BASE_URL } from "../../config";
+//import { API_BASE_URL } from "../../config";
+
+const API_BASE_URL = "https://employeemanagement-server-p9xc.onrender.com";
 
 const Dashboard = () => {
   const [employees, setEmployees] = useState([]);
